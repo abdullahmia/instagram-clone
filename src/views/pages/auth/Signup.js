@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import appleStore from "../../../assets/appstore.png";
 import facebook from "../../../assets/facebook.png";
 import playStore from "../../../assets/googleplay.png";
-import loginImg from "../../../assets/insta.jpg";
 import logo from "../../../assets/logo.png";
 import Wrapper from "../../components/custom/Wrapper";
 
@@ -19,9 +18,6 @@ const Signup = () => {
     <Wrapper title="Sign up • Instagram">
       <div className="w-full">
         <div className="flex pt-10 justify-center gap-6">
-          <div className="hidden lg:block">
-            <img src={loginImg} alt="" />
-          </div>
           <div>
             <div className="bg-[#FFFFFF] w-[348px] pb-8 px-8 border border-[#d3d0d0]">
               <div className="py-10 flex flex-col justify-center">
