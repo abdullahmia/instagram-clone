@@ -2,7 +2,7 @@ import Main from "./views/pages/Main";
 
 const App = () => {
   return (
-    <div className="bg-gray-100 h-full w-full">
+    <div className="bg-[#FAFAFA]">
       <Main />
     </div>
   );

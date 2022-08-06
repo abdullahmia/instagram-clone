@@ -16,14 +16,14 @@ const Login = () => {
     reset();
   };
   return (
-    <Wrapper title="Instagram">
+    <Wrapper title="Log In • Instagram">
       <div className="w-full">
         <div className="flex pt-10 justify-center gap-6">
           <div className="hidden lg:block">
             <img src={loginImg} alt="" />
           </div>
           <div>
-            <div className="bg-white w-[348px] h-[424px] px-8 border border-[#d3d0d0]">
+            <div className="bg-[#FFFFFF] w-[348px] h-[424px] px-8 border border-[#d3d0d0]">
               <div className="py-10 flex justify-center">
                 <img src={logo} alt="" />
               </div>
