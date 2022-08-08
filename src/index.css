@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg {
+  @apply bg-[#FAFAFA] dark:bg-[#121212];
+}

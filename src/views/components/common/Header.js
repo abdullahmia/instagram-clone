@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
+import Switcher from "../custom/Switcher";
 
 const Header = () => {
   return (
-    <div className="w-full bg-white border-b py-4 border-[#dddddde0] px-4 lg:px-0 md:px-0">
+    <div className="w-full bg-white dark:bg-[#121212] border-b py-4 border-[#dddddde0] dark:border-gray-800 px-4 lg:px-0 md:px-0">
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           <div>
@@ -13,7 +14,7 @@ const Header = () => {
             <Link to="/">
               <svg
                 aria-label="Home"
-                className="_ab6-"
+                className="dark:text-gray-200"
                 color="#262626"
                 fill="#262626"
                 height="24"
@@ -33,7 +34,7 @@ const Header = () => {
             <Link to="/chat">
               <svg
                 aria-label="Messenger"
-                className="_ab6-"
+                className="dark:text-gray-200"
                 color="#262626"
                 fill="#262626"
                 height="24"
@@ -57,7 +58,7 @@ const Header = () => {
             <Link to="/add">
               <svg
                 aria-label="New post"
-                className="_ab6-"
+                className="dark:text-gray-200"
                 color="#262626"
                 fill="#262626"
                 height="24"
@@ -100,7 +101,7 @@ const Header = () => {
             <Link to="/search">
               <svg
                 aria-label="Find People"
-                className="_ab6-"
+                className="dark:text-gray-200"
                 color="#262626"
                 fill="#262626"
                 height="24"
@@ -132,7 +133,7 @@ const Header = () => {
             <Link to="/notification">
               <svg
                 aria-label="Activity Feed"
-                className="_ab6-"
+                className="dark:text-gray-200"
                 color="#262626"
                 fill="#262626"
                 height="24"
@@ -150,6 +151,7 @@ const Header = () => {
                 alt="user"
               />
             </button>
+            <Switcher />
           </div>
         </div>
       </div>
