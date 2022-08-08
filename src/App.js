@@ -2,7 +2,7 @@ import Main from "./views/pages/Main";
 
 const App = () => {
   return (
-    <div className="bg h-screen">
+    <div className="background">
       <Main />
     </div>
   );

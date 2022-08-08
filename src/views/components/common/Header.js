@@ -4,11 +4,13 @@ import Switcher from "../custom/Switcher";
 
 const Header = () => {
   return (
-    <div className="w-full bg-white dark:bg-[#121212] border-b py-4 border-[#dddddde0] dark:border-gray-800 px-4 lg:px-0 md:px-0">
+    <div className="w-full bg-white dark:bg-[#121212] border-b py-4 border-[#dddddde0] dark:border-gray-800 px-4 lg:px-0 md:px-0 sticky top-0">
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           <div>
-            <img src={logo} className="w-[110px]" alt="logo" />
+            <Link to="/">
+              <img src={logo} className="w-[110px]" alt="logo" />
+            </Link>
           </div>
           <div className="flex items-center gap-6">
             <Link to="/">

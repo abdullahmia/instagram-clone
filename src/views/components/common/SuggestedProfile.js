@@ -12,7 +12,7 @@ const SuggestedProfile = () => {
           />
         </div>
         <div>
-          <h2 className="text-[14px] text-[#262626] dark:text-gray-300 font-[700]">
+          <h2 className="text-[14px] text-[#262626] dark:text-gray-400 font-[700]">
             riazuddin10
           </h2>
           <h3 className="text-[12px] text-[#8e8e8e] font-[400]">

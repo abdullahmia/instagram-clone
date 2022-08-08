@@ -17,7 +17,7 @@ const Sidebar = () => {
           </div>
           <div>
             <Link
-              className="text-[12px] text-[#262626] font-[700] capitalize"
+              className="text-[12px] text-[#262626] font-[700] dark:text-gray-400 capitalize"
               to="/suggested"
             >
               see all

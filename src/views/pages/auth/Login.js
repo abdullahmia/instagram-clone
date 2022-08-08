@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import appleStore from "../../../assets/appstore.png";
 import facebook from "../../../assets/facebook.png";
 import playStore from "../../../assets/googleplay.png";
@@ -10,10 +10,11 @@ import Wrapper from "../../components/custom/Wrapper";
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
 
+  const navigate = useNavigate();
+
   // login form submit
   const loginSubmit = async (data) => {
-    console.log(data);
-    reset();
+    navigate("/");
   };
   return (
     <Wrapper title="Log In • Instagram">

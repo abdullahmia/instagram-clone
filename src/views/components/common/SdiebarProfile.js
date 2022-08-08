@@ -10,10 +10,10 @@ const SdiebarProfile = () => {
           />
         </div>
         <div>
-          <h2 className="text-[14px] text-[#262626] dark:text-gray-200 font-[600]">
+          <h2 className="text-[14px] text-[#262626] dark:text-gray-300 font-[600]">
             abirislam1971
           </h2>
-          <h2 className="text-[14px] text-[#8e8e8e] dark:text-gray-300">
+          <h2 className="text-[14px] text-[#8e8e8e] dark:text-gray-400">
             Abir Islam
           </h2>
         </div>
