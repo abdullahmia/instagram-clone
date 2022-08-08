@@ -17,7 +17,7 @@ const Login = () => {
   };
   return (
     <Wrapper title="Log In • Instagram">
-      <div className="w-full">
+      <div className="w-full h-screen flex justify-center items-center">
         <div className="flex pt-10 justify-center gap-6">
           <div className="hidden lg:block">
             <img src={loginImg} alt="" />
