@@ -68,8 +68,8 @@ const Login = () => {
                     </span>
                   </h2>
                   <Link
-                    to="/forgot-password"
-                    className="text-[#00376b] text-[12px]"
+                    to="/password-reset"
+                    className="text-[#00376b] text-[12px] hover:underline"
                   >
                     forgot password?
                   </Link>
