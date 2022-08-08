@@ -8,7 +8,7 @@ import logo from "../../../assets/logo.png";
 import Wrapper from "../../components/custom/Wrapper";
 
 const Login = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const navigate = useNavigate();
 

@@ -8,7 +8,7 @@ const Feed = () => {
     <Wrapper title={"Instagram"}>
       <Header />
       <div className="container mx-auto px-8 flex gap-5 mt-5">
-        <div className="w-[490px]">
+        <div className="lg:w-[490px] w-[430px]">
           <div>{/* Stories */}</div>
           <div className="flex flex-col gap-4">
             <Post />
@@ -25,7 +25,7 @@ const Feed = () => {
             <Post />
           </div>
         </div>
-        <div className="w-[383px]">
+        <div className="w-[383px] lg:block hidden">
           <Sidebar />
         </div>
       </div>

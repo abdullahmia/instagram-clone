@@ -138,7 +138,7 @@ const Post = () => {
           11 hours ago
         </p>
       </div>
-      <div className="px-3 flex items-center justify-between border-t dark:border-[#2d343b] py-3 mt-3">
+      <div className="px-3 w-full flex items-center justify-between border-t dark:border-[#2d343b] py-3 mt-3">
         <div className="flex items-center gap-3">
           <button>
             <svg
@@ -157,7 +157,7 @@ const Post = () => {
           <input
             type="text"
             placeholder="Add a comment"
-            className="text-[14px] text-[#8e8e8e] font-[400] border-none focus:outline-none w-[380px] bg-transparent"
+            className="text-[14px] text-[#8e8e8e] font-[400] border-none focus:outline-none lg:w-[380px] w-[330px] bg-transparent"
           />
         </div>
         <div>
