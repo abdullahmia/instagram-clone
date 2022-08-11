@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SuggestedProfile = () => {
   return (
@@ -12,9 +13,12 @@ const SuggestedProfile = () => {
           />
         </div>
         <div>
-          <h2 className="text-[14px] text-[#262626] dark:text-gray-400 font-[700]">
+          <Link
+            to={"/abirislam"}
+            className="text-[14px] text-[#262626] dark:text-gray-400 font-[700]"
+          >
             riazuddin10
-          </h2>
+          </Link>
           <h3 className="text-[12px] text-[#8e8e8e] font-[400]">
             New to Instagram
           </h3>

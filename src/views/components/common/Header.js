@@ -132,11 +132,10 @@ const Header = () => {
                 ></line>
               </svg>
             </Link>
-            <Link to="/notification">
+            <Link to="/notification" className="dark:text-gray-200">
               <svg
                 aria-label="Activity Feed"
-                className="dark:text-gray-200"
-                color="#262626"
+                // color="#262626"
                 fill="#262626"
                 height="24"
                 role="img"

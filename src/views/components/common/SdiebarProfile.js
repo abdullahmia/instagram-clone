@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const SdiebarProfile = () => {
   return (
     <div className="flex items-center justify-between py-3">
@@ -10,9 +12,12 @@ const SdiebarProfile = () => {
           />
         </div>
         <div>
-          <h2 className="text-[14px] text-[#262626] dark:text-gray-300 font-[600]">
+          <Link
+            to={"/abirislam"}
+            className="text-[14px] text-[#262626] dark:text-gray-300 font-[600]"
+          >
             abirislam1971
-          </h2>
+          </Link>
           <h2 className="text-[14px] text-[#8e8e8e] dark:text-gray-400">
             Abir Islam
           </h2>
