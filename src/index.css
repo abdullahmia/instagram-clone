@@ -5,3 +5,36 @@
 .background {
   @apply bg-[#FAFAFA] dark:bg-[#121212];
 }
+
+.content-div {
+  background-image: url("https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.content-div:hover {
+  background-image: linear-gradient(
+      to right,
+      rgba(126, 213, 111, 0.801),
+      hsla(160, 64%, 43%, 0.801)
+    ),
+    url("https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80");
+}
+
+/* 
+
+
+.image-cover {
+  height: 260px;
+} */
+/*
+  -remove the classes below if you have the 'group-hover'property added in your tailwind config file
+  -also remove the class from the html template
+  */
+.content-div:hover .fd-cl {
+  opacity: 0.25;
+}
+.content-div:hover .fd-sh {
+  opacity: 1;
+}
