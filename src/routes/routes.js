@@ -7,6 +7,9 @@ import Signup from "../views/pages/auth/Signup";
 import Feed from "../views/pages/feed/Feed";
 import Profile from "../views/pages/Profile";
 
+// Acounts routes
+import Edit from "../views/pages/accounts/Edit";
+
 export const routes = [
   {
     path: "/",
@@ -17,6 +20,16 @@ export const routes = [
     path: "/:username",
     element: Profile,
     role: ["user"],
+  },
+  {
+    path: "/account",
+    role: ["user"],
+    children: [
+      {
+        path: "edit",
+        element: Edit,
+      },
+    ],
   },
   {
     path: "/login",
