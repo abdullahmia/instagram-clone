@@ -12,10 +12,6 @@ const Main = () => {
           <Route key={key} path={route.path} element={<route.element />} />
         ))}
 
-        {/* {authRoutes.map((route, key) => (
-          <Route key={key} path={route.path} element={<route.element />} />
-        ))} */}
-
         {authRoutes.map((route, key) =>
           route.children ? (
             <Route key={key} path={route.path}>
