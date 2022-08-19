@@ -1,24 +1,33 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Menu = () => {
   return (
     <div className="w-[236px] border-r dark:border-[#2d343b] lg:block hidden">
       <div className="pl-6 pt-4 flex flex-col gap-6">
         <div>
-          <Link
+          <NavLink
             to="/account/edit"
-            className="text-[16px] text-[#262626] font-[600] dark:text-gray-100"
+            className={({ isActive }) =>
+              isActive
+                ? "text-[16px] text-[#262626] font-[600] dark:text-gray-100"
+                : "text-[16px] text-[#262626] dark:text-gray-200"
+            }
           >
             Edit Profile
-          </Link>
+          </NavLink>
         </div>
         <div>
-          <Link
-            to="/account/edit"
-            className="text-[16px] text-[#262626] dark:text-gray-200"
+          <NavLink
+            to="/account/password"
+            className={({ isActive }) =>
+              isActive
+                ? "text-[16px] text-[#262626] font-[600] dark:text-gray-100"
+                : "text-[16px] text-[#262626] dark:text-gray-200"
+            }
+            end={true}
           >
             Change password
-          </Link>
+          </NavLink>
         </div>
         <div>
           <Link

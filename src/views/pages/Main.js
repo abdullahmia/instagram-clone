@@ -23,6 +23,7 @@ const Main = () => {
                 route.children.map((subRoute, index) => (
                   <Route
                     key={index}
+                    index={true}
                     path={subRoute.path}
                     element={<subRoute.element />}
                   />
