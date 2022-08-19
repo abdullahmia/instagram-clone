@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const Menu = () => {
   return (
-    <div className="w-[236px] border-r dark:border-[#2d343b]">
-      <div className="pl-6 pt-4 flex flex-col gap-5">
+    <div className="w-[236px] border-r dark:border-[#2d343b] lg:block hidden">
+      <div className="pl-6 pt-4 flex flex-col gap-6">
         <div>
           <Link
             to="/account/edit"
