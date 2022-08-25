@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import PrivateRoute from "../../routes/PrivateRoute";
 import { routes } from "../../routes/routes";
 
 const Main = () => {
@@ -21,12 +22,24 @@ const Main = () => {
                     key={index}
                     index={true}
                     path={subRoute.path}
-                    element={<subRoute.element />}
+                    element={
+                      <PrivateRoute>
+                        <subRoute.element />
+                      </PrivateRoute>
+                    }
                   />
                 ))}
             </Route>
           ) : (
-            <Route key={key} path={route.path} element={<route.element />} />
+            <Route
+              key={key}
+              path={route.path}
+              element={
+                <PrivateRoute>
+                  <route.element />
+                </PrivateRoute>
+              }
+            />
           )
         )}
       </Routes>

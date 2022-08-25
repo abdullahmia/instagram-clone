@@ -33,7 +33,7 @@ const Signup = () => {
       <div className="w-full">
         <div className="flex pt-10 justify-center gap-6">
           <div>
-            <div className="bg-[#FFFFFF] w-[348px] pb-8 px-8 border border-[#d3d0d0]">
+            <div className="bg-[#FFFFFF] w-[348px] pb-8 px-8 border border-[#d3d0d0] dark:bg-[#252a30] dark:border-[#2d343b]">
               <div className="py-10 flex flex-col justify-center">
                 <div className="flex flex-col justify-center items">
                   <img src={logo} alt="" className="w-40 mx-auto" />
@@ -47,10 +47,10 @@ const Signup = () => {
                     Log in with Facebook
                   </span>
                 </button>
-                <div className="relative mt-5 h-px bg-gray-300">
+                <div className="relative mt-4 h-px bg-gray-300 background">
                   <div className="absolute left-0 top-0 flex justify-center w-full -mt-2">
-                    <span className="font-semibold bg-white px-4 text-xs text-gray-500 uppercase">
-                      OR
+                    <span className="px-4 text-xs text-gray-500 uppercase background">
+                      Or
                     </span>
                   </div>
                 </div>
@@ -68,25 +68,25 @@ const Signup = () => {
                   <input
                     {...register("email")}
                     type="text"
-                    className="border text-xs py-2.5 bg-gray-50 px-3 rounded focus:outline-none"
+                    className="border text-xs py-2.5 bg-gray-50 px-3 rounded focus:outline-none background dark:text-gray-300 dark:border-[#2d343b]"
                     placeholder="Email address"
                   />
                   <input
                     {...register("fullName")}
                     type="text"
-                    className="border text-xs py-2.5 bg-gray-50 px-3 rounded focus:outline-none"
+                    className="border text-xs py-2.5 bg-gray-50 px-3 rounded focus:outline-none background dark:text-gray-300 dark:border-[#2d343b]"
                     placeholder="Full Name"
                   />
                   <input
                     {...register("username")}
                     type="text"
-                    className="border text-xs py-2.5 bg-gray-50 px-3 rounded focus:outline-none"
+                    className="border text-xs py-2.5 bg-gray-50 px-3 rounded focus:outline-none background dark:text-gray-300 dark:border-[#2d343b]"
                     placeholder="Username"
                   />
                   <input
                     {...register("password")}
                     type="password"
-                    className="border text-xs py-2.5 px-3 rounded focus:outline-none"
+                    className="border text-xs py-2.5 px-3 rounded focus:outline-none background dark:text-gray-300 dark:border-[#2d343b]"
                     placeholder="Password"
                   />
                   <p className="text-[12px] text-[#8e8e8e] px-2 text-center">
@@ -108,8 +108,8 @@ const Signup = () => {
               </div>
             </div>
 
-            <div className="bg-white mt-4 py-6 border border-[#d3d0d0]">
-              <h2 className="text-center text-[14px] text-[#262626]">
+            <div className="bg-white mt-4 py-6 border border-[#d3d0d0] dark:bg-[#252a30] dark:border-[#2d343b]">
+              <h2 className="text-center text-[14px] text-[#262626] dark:text-gray-300">
                 Don't have an account?{" "}
                 <Link to="/login" className="text-[#0095f6] font-[600]">
                   Log In

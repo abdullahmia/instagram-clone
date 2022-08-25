@@ -27,19 +27,19 @@ const Login = () => {
       }
 
       if (res.error) {
-        setMessage(res.error.data.message);
+        setMessage(res?.error?.data?.message);
       }
     });
   };
   return (
     <Wrapper title="Log In • Instagram">
-      <div className="w-full h-screen flex justify-center items-center">
+      <div className="w-full h-screen flex justify-center items-center background">
         <div className="flex pt-10 justify-center gap-6">
           <div className="lg:block hidden">
             <img src={loginImg} alt="" />
           </div>
           <div>
-            <div className="bg-[#FFFFFF] w-[348px] h-[424px] px-8 border border-[#d3d0d0]">
+            <div className="bg-[#FFFFFF] w-[348px] h-[424px] px-8 border border-[#d3d0d0] dark:bg-[#252a30] dark:border-[#2d343b]">
               <div className="py-10 flex justify-center">
                 <img src={logo} alt="" />
               </div>
@@ -56,13 +56,13 @@ const Login = () => {
                   <input
                     {...register("username")}
                     type="text"
-                    className="border text-xs py-2.5 bg-gray-50 px-3 rounded focus:outline-none"
+                    className="border text-xs py-2.5 bg-gray-50 px-3 rounded focus:outline-none background dark:text-gray-300 dark:border-[#2d343b]"
                     placeholder="Phone number, email or username"
                   />
                   <input
                     {...register("password")}
                     type="password"
-                    className="border text-xs py-2.5 px-3 rounded focus:outline-none"
+                    className="border text-xs py-2.5 px-3 rounded focus:outline-none background dark:text-gray-300 dark:border-[#2d343b]"
                     placeholder="Password"
                   />
                   <button
@@ -74,9 +74,9 @@ const Login = () => {
                   </button>
                 </form>
 
-                <div className="relative mt-10 h-px bg-gray-300">
+                <div className="relative mt-10 h-px bg-gray-300 background">
                   <div className="absolute left-0 top-0 flex justify-center w-full -mt-2">
-                    <span className="bg-white px-4 text-xs text-gray-500 uppercase">
+                    <span className="px-4 text-xs text-gray-500 uppercase background">
                       Or
                     </span>
                   </div>
@@ -91,7 +91,7 @@ const Login = () => {
                   </h2>
                   <Link
                     to="/password-reset"
-                    className="text-[#00376b] text-[12px] hover:underline"
+                    className="text-[#00376b] text-[12px] hover:underline dark:text-blue-200"
                   >
                     forgot password?
                   </Link>
@@ -99,8 +99,8 @@ const Login = () => {
               </div>
             </div>
 
-            <div className="bg-white mt-4 py-6 border border-[#d3d0d0]">
-              <h2 className="text-center text-[14px] text-[#262626]">
+            <div className="bg-white mt-4 py-6 border border-[#d3d0d0] dark:bg-[#252a30] dark:border-[#2d343b]">
+              <h2 className="text-center text-[14px] text-[#262626] dark:text-gray-300">
                 Don't have an account?{" "}
                 <Link to="/signup" className="text-[#0095f6] font-[600]">
                   Sign up
@@ -110,10 +110,10 @@ const Login = () => {
 
             {/* App Section */}
             <div className="py-6">
-              <h2 className="text-center text-[14px] text-[#262626]">
+              <h2 className="text-center text-[14px] text-[#262626] dark:text-gray-300">
                 Get the app.
               </h2>
-              <div className="mt-4 flex items-center justify-center gap-2">
+              <div className="mt-4 flex items-center justify-center gap-2 background">
                 <img src={appleStore} className="w-32" alt="" />
                 <img src={playStore} className="w-32" alt="" />
               </div>
