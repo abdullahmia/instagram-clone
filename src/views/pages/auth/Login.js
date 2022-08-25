@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import appleStore from "../../../assets/appstore.png";
@@ -5,16 +6,30 @@ import facebook from "../../../assets/facebook.png";
 import playStore from "../../../assets/googleplay.png";
 import loginImg from "../../../assets/insta.jpg";
 import logo from "../../../assets/logo.png";
+import { useLoginMutation } from "../../../redux/services/authServices";
+import Loader from "../../components/common/Loader";
 import Wrapper from "../../components/custom/Wrapper";
 
 const Login = () => {
+  const [message, setMessage] = useState("");
   const { register, handleSubmit } = useForm();
 
   const navigate = useNavigate();
 
   // login form submit
+  const [login, { isLoading }] = useLoginMutation();
   const loginSubmit = async (data) => {
-    navigate("/");
+    await login(data).then((res) => {
+      if (res.data) {
+        setMessage("");
+        localStorage.setItem("user", JSON.stringify(res.data));
+        navigate("/");
+      }
+
+      if (res.error) {
+        setMessage(res.error.data.message);
+      }
+    });
   };
   return (
     <Wrapper title="Log In • Instagram">
@@ -29,12 +44,17 @@ const Login = () => {
                 <img src={logo} alt="" />
               </div>
               <div>
+                {message && (
+                  <p className="text-[12px] mb-5 text-[#b63131] px-2 text-center">
+                    {message}
+                  </p>
+                )}
                 <form
                   onSubmit={handleSubmit(loginSubmit)}
                   className="flex flex-col gap-3"
                 >
                   <input
-                    {...register("email")}
+                    {...register("username")}
                     type="text"
                     className="border text-xs py-2.5 bg-gray-50 px-3 rounded focus:outline-none"
                     placeholder="Phone number, email or username"
@@ -47,8 +67,9 @@ const Login = () => {
                   />
                   <button
                     type="submit"
-                    className="capitalize text-sm bg-blue-500 text-white py-1.5 rounded"
+                    className="flex items-center justify-center gap-4 capitalize text-sm bg-blue-500 text-white py-1.5 rounded"
                   >
+                    {isLoading && <Loader />}
                     log in
                   </button>
                 </form>

@@ -1,19 +1,33 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import appleStore from "../../../assets/appstore.png";
 import facebook from "../../../assets/facebook.png";
 import playStore from "../../../assets/googleplay.png";
 import logo from "../../../assets/logo.png";
+import { useRegisterUserMutation } from "../../../redux/services/authServices";
+import Loader from "../../components/common/Loader";
 import Wrapper from "../../components/custom/Wrapper";
 
 const Signup = () => {
+  const [message, setMessage] = useState("");
   const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
 
   // login form submit
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
   const signupSubmit = async (data) => {
-    console.log(data);
-    reset();
+    await registerUser(data).then((res) => {
+      if (res.data) {
+        reset();
+        navigate("/login");
+      }
+      if (res.error) {
+        setMessage(res.error.data.message);
+      }
+    });
   };
+
   return (
     <Wrapper title="Sign up • Instagram">
       <div className="w-full">
@@ -41,8 +55,12 @@ const Signup = () => {
                   </div>
                 </div>
               </div>
-
               <div>
+                {message && (
+                  <p className="text-[12px] mb-5 text-[#b63131] px-2 text-center">
+                    {message}
+                  </p>
+                )}
                 <form
                   onSubmit={handleSubmit(signupSubmit)}
                   className="flex flex-col gap-3"
@@ -81,8 +99,9 @@ const Signup = () => {
                   </p>
                   <button
                     type="submit"
-                    className="capitalize text-sm bg-blue-500 text-white py-1.5 rounded"
+                    className="flex items-center justify-center gap-4 capitalize text-sm bg-blue-500 text-white py-1.5 rounded"
                   >
+                    {isLoading && <Loader />}
                     Sign Up
                   </button>
                 </form>
