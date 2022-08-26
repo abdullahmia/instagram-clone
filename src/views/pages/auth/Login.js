@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import appleStore from "../../../assets/appstore.png";
@@ -13,8 +13,15 @@ import Wrapper from "../../components/custom/Wrapper";
 const Login = () => {
   const [message, setMessage] = useState("");
   const { register, handleSubmit } = useForm();
-
   const navigate = useNavigate();
+
+  // redirect login if user is already login
+  const user = JSON.parse(localStorage.getItem("user"))?.token;
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   // login form submit
   const [login, { isLoading }] = useLoginMutation();
