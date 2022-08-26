@@ -17,7 +17,19 @@ export const userApi = createApi({
       query: (username) => `/user/${username}`,
       providesTags: ["User"],
     }),
+
+    // update profile
+    updateProfile: builder.mutation({
+      query: (body) => {
+        return {
+          url: `/user/update-profile`,
+          method: "PATCH",
+          body: body,
+        };
+      },
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
-export const { useUserDataQuery } = userApi;
+export const { useUserDataQuery, useUpdateProfileMutation } = userApi;
