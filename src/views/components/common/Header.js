@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
+import getUser from "../../../helper/user";
 import Switcher from "../custom/Switcher";
+import Image from "./Image";
 
 const Header = () => {
+  const user = getUser();
+  let image = user?.image ? user?.image : "user_cowfsl";
   return (
     <div className="w-full bg-white dark:bg-[#121212] border-b py-4 border-[#dddddde0] dark:border-gray-800 px-4 lg:px-0 md:px-0 sticky top-0">
       <div className="container mx-auto">
@@ -146,11 +150,8 @@ const Header = () => {
               </svg>
             </Link>
             <button>
-              <img
-                src="https://picsum.photos/200"
-                className="w-[24px] h-[24px] rounded-full"
-                alt="user"
-              />
+              {/* <img src="https://picsum.photos/200" className="" alt="user" /> */}
+              <Image src={image} classname="w-[24px] h-[24px] rounded-full" />
             </button>
             <Switcher />
           </div>

@@ -22,6 +22,7 @@ const ResetPasswordSet = () => {
         if (res?.data) {
           setSuccess(res?.data?.message);
           setError("");
+          reset();
           navigate("/login");
         }
         if (res?.error) {

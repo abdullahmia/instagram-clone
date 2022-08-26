@@ -1,25 +1,25 @@
 import { Link } from "react-router-dom";
+import getUser from "../../../helper/user";
+import Image from "./Image";
 
 const SdiebarProfile = () => {
+  const user = getUser();
+  let image = user?.image ? user?.image : "user_cowfsl";
   return (
     <div className="flex items-center justify-between py-3">
       <div className="flex items-center gap-4">
         <div>
-          <img
-            src="https://picsum.photos/200"
-            alt=""
-            className="w-[56px] h-[56px] rounded-full"
-          />
+          <Image src={image} classname="w-[56px] h-[56px] rounded-full" />
         </div>
         <div>
           <Link
-            to={"/abirislam"}
+            to={`${user?.username}`}
             className="text-[14px] text-[#262626] dark:text-gray-300 font-[600]"
           >
-            abirislam1971
+            {user?.username}
           </Link>
           <h2 className="text-[14px] text-[#8e8e8e] dark:text-gray-400">
-            Abir Islam
+            {user?.fullName}
           </h2>
         </div>
       </div>
