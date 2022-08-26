@@ -1,33 +1,35 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { BiLockAlt } from "react-icons/bi";
-import { Link } from "react-router-dom";
-import { useForgotPasswordEmailSendMutation } from "../../../redux/services/authServices";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useResetPasswordMutation } from "../../../redux/services/authServices";
 import Loader from "../../components/common/Loader";
 import Wrapper from "../../components/custom/Wrapper";
 
-const PasswordReset = () => {
+const ResetPasswordSet = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const { register, handleSubmit, reset } = useForm();
 
-  const [forgotPasswordEmailSend, { isLoading }] =
-    useForgotPasswordEmailSendMutation();
-  // login form submit handler
-  const passwordResetSubmit = async (data) => {
-    console.log(data);
-    // reset();
-    await forgotPasswordEmailSend(data).then((res) => {
-      if (res?.data) {
-        setSuccess(res?.data?.message);
-        setError("");
-        reset();
+  const { register, handleSubmit, reset } = useForm();
+  const { user, token } = useParams();
+  const navigate = useNavigate();
+
+  const [resetPassword, { isLoading }] = useResetPasswordMutation();
+  // set new password handler
+  const resetPasswordHandler = async (data) => {
+    await resetPassword({ user: user, token: token, body: data }).then(
+      (res) => {
+        if (res?.data) {
+          setSuccess(res?.data?.message);
+          setError("");
+          navigate("/login");
+        }
+        if (res?.error) {
+          setError(res?.error?.data?.message);
+          setSuccess("");
+        }
       }
-      if (res?.error) {
-        setError(res?.error?.data?.message);
-        setSuccess("");
-      }
-    });
+    );
   };
   return (
     <Wrapper title="Reset Password • Instagram">
@@ -39,7 +41,7 @@ const PasswordReset = () => {
                 <BiLockAlt className="text-[35px] text-black" />
               </div>
               <h2 className="text-[#262626] text-[16px] font-[600]">
-                Trouble Logging In?
+                Set new password
               </h2>
               <p className="text-[13px] text-[#8e8e8e]">
                 Enter your email, phone, or username and we'll send you a link
@@ -60,14 +62,22 @@ const PasswordReset = () => {
             )}
 
             <form
-              onSubmit={handleSubmit(passwordResetSubmit)}
+              onSubmit={handleSubmit(resetPasswordHandler)}
               className="flex flex-col gap-3 mt-5"
             >
               <input
-                {...register("email")}
+                {...register("newPassword")}
                 type="text"
                 className="border text-xs py-2.5 bg-gray-50 px-3 rounded-md focus:outline-none"
-                placeholder="Email address"
+                placeholder="New Password"
+                required
+              />
+              <input
+                {...register("confirmPassword")}
+                type="text"
+                className="border text-xs py-2.5 bg-gray-50 px-3 rounded-md focus:outline-none"
+                placeholder="Confirm password"
+                required
               />
 
               <button
@@ -75,26 +85,12 @@ const PasswordReset = () => {
                 className="flex items-center gap-2 justify-center capitalize text-sm bg-blue-500 text-white py-1.5 rounded"
               >
                 {isLoading && <Loader />}
-                send password reset link
+                set new password
               </button>
             </form>
-
-            <div className="relative mt-10 h-px bg-gray-300">
-              <div className="absolute left-0 top-0 flex justify-center w-full -mt-2">
-                <span className="bg-white px-4 text-xs text-gray-500 uppercase">
-                  Or
-                </span>
-              </div>
-            </div>
           </div>
 
           <div className="text-center mt-8 flex flex-col gap-4">
-            <Link
-              to="/signup"
-              className="capitalize text-[14px] text-[#262626] font-[600]"
-            >
-              Create new account
-            </Link>
             <Link
               to="/login"
               className="mt-10 w-full inline-block capitalize border py-2 text-[#262626] text-[14px] font-[600]"
@@ -108,4 +104,4 @@ const PasswordReset = () => {
   );
 };
 
-export default PasswordReset;
+export default ResetPasswordSet;

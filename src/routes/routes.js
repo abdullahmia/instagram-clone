@@ -1,6 +1,7 @@
 // Auth routes
 import Login from "../views/pages/auth/Login";
 import PasswordReset from "../views/pages/auth/PasswordReset";
+import ResetPasswordSet from "../views/pages/auth/ResetPasswordSet";
 import Signup from "../views/pages/auth/Signup";
 
 // authenticated routes
@@ -55,6 +56,11 @@ export const routes = [
   {
     path: "/password-reset",
     element: PasswordReset,
+    role: ["*"],
+  },
+  {
+    path: "/reset-password/:user/:token",
+    element: ResetPasswordSet,
     role: ["*"],
   },
 ];
