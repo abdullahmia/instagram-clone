@@ -11,10 +11,10 @@ export const userApi = createApi({
       return header;
     },
   }),
-  tagTypes: ["User"],
+  tagTypes: ["User", "suggestionUsers"],
   endpoints: (builder) => ({
     userData: builder.query({
-      query: (username) => `/user/${username}`,
+      query: (username) => `/user/user/${username}`,
       providesTags: ["User"],
     }),
 
@@ -41,6 +41,33 @@ export const userApi = createApi({
       },
       invalidatesTags: ["User"],
     }),
+
+    // suggestion users
+    suggestionUsers: builder.query({
+      query: () => `/user/suggested`,
+      providesTags: ["suggestionUsers"],
+    }),
+
+    // Follow a user by id
+    follow: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/user/follow/${id}`,
+          method: "PATCH",
+        };
+      },
+      invalidatesTags: ["User", "suggestionUsers"],
+    }),
+    // Follow a user by id
+    unfollow: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/user/unfollow/${id}`,
+          method: "PATCH",
+        };
+      },
+      invalidatesTags: ["User", "suggestionUsers"],
+    }),
   }),
 });
 
@@ -48,4 +75,7 @@ export const {
   useUserDataQuery,
   useUpdateProfileMutation,
   useUpdateProfilePictureMutation,
+  useSuggestionUsersQuery,
+  useFollowMutation,
+  useUnfollowMutation,
 } = userApi;

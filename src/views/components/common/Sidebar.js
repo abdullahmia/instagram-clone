@@ -1,8 +1,20 @@
 import { Link } from "react-router-dom";
+import getUser from "../../../helper/user";
+import { useSuggestionUsersQuery } from "../../../redux/services/userService";
+import SuggestedProfile from "../common/SuggestedProfile";
 import SdiebarProfile from "./SdiebarProfile";
-import SuggestedProfile from "./SuggestedProfile";
 
 const Sidebar = () => {
+  const { data: suggestedUsers } = useSuggestionUsersQuery();
+  const userData = getUser();
+
+  // users filter if user is not login user
+  const filterUsers = (user) => {
+    if (user._id !== userData.id) {
+      return user;
+    }
+  };
+
   return (
     <div className="bg-transparent">
       <SdiebarProfile />
@@ -25,11 +37,10 @@ const Sidebar = () => {
           </div>
         </div>
         <div className="px-3">
-          <SuggestedProfile />
-          <SuggestedProfile />
-          <SuggestedProfile />
-          <SuggestedProfile />
-          <SuggestedProfile />
+          {" "}
+          {suggestedUsers?.users?.filter(filterUsers).map((user, key) => (
+            <SuggestedProfile key={key} user={user} />
+          ))}
         </div>
       </div>
     </div>

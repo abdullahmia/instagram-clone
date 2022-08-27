@@ -16,7 +16,7 @@ const Edit = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [profile, setProfile] = useState(null);
   const filePickerRef = useRef(null);
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const { username, image } = getUser();
   const { data: user, isLoading } = useUserDataQuery(username);
 
