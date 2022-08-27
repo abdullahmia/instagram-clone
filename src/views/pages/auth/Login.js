@@ -52,7 +52,7 @@ const Login = () => {
               </div>
               <div>
                 {message && (
-                  <p className="text-[12px] mb-5 text-[#b63131] px-2 text-center">
+                  <p className="text-[12px] text-[#b63131] px-2 text-center">
                     {message}
                   </p>
                 )}

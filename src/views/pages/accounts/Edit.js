@@ -1,27 +1,31 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import getUser from "../../../helper/user";
+// prettier-ignore
 import {
   useUpdateProfileMutation,
+  useUpdateProfilePictureMutation,
   useUserDataQuery
 } from "../../../redux/services/userService";
+import Image from "../../components/common/Image";
 import Loader from "../../components/common/Loader";
 import AccountWrapper from "../../components/custom/AccountWrapper";
 
 const Edit = () => {
   const [message, setMessage] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const filePickerRef = useRef(null);
   const { register, handleSubmit, reset } = useForm();
-  const { username } = getUser();
+  const { username, image } = getUser();
   const { data: user, isLoading } = useUserDataQuery(username);
 
   // update profile
-
   const [updateProfile, { isLoading: updaeProfileLoading }] =
     useUpdateProfileMutation();
 
   // update profile submit handler
   const updateProfileHandler = async (data) => {
-    console.log(data);
     await updateProfile(data).then((res) => {
       if (res.data) {
         let user = JSON.parse(localStorage.getItem("user"));
@@ -35,6 +39,41 @@ const Edit = () => {
     });
   };
 
+  // add photo to image
+  const addPhotoToPost = (e) => {
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      setProfile(e.target.files[0]);
+      reader.readAsDataURL(e.target.files[0]);
+    }
+
+    reader.onload = (readerEvent) => {
+      setSelectedFile(readerEvent.target.result);
+    };
+  };
+
+  const [updateProfilePicture, { isLoading: upPicLoading }] =
+    useUpdateProfilePictureMutation();
+
+  // upload profile picture handler
+  const uploadProfilePictureHandler = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", profile);
+    await updateProfilePicture(formData).then((res) => {
+      if (res.data) {
+        let oldUser = JSON.parse(localStorage.getItem("user"));
+        localStorage.removeItem("user");
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ ...oldUser, image: res?.data?.image })
+        );
+        setMessage(res?.data?.message);
+        setProfile(null);
+      }
+    });
+  };
+
   return (
     <AccountWrapper title={"Edit profile • Instagram"}>
       {isLoading ? (
@@ -44,28 +83,61 @@ const Edit = () => {
       ) : (
         <div className="py-8 px-6">
           <div className="w-full">
-            <form
-              onSubmit={handleSubmit(updateProfileHandler)}
-              className="flex flex-col gap-6"
-            >
-              <div className="flex items-center gap-11">
+            <div className="mb-5">
+              <form
+                onSubmit={uploadProfilePictureHandler}
+                className="flex items-center gap-11"
+              >
                 <div className="lg:w-36 flex justify-end">
-                  <img
-                    src="https://picsum.photos/200"
-                    className="w-[38px] h-[38px] rounded-full"
-                    alt="profile"
-                  />
+                  {selectedFile ? (
+                    <img
+                      src={selectedFile}
+                      className="w-[38px] h-[38px] rounded-full object-cover"
+                      alt="profile"
+                    />
+                  ) : (
+                    <Image
+                      src={image}
+                      classname="w-[38px] h-[38px] rounded-full object-cover"
+                    />
+                  )}
                 </div>
                 <div className="flex flex-col">
                   <h2 className="text-[#262626] text-[20px] font-[400] dark:text-gray-300">
                     {user?.username}
                   </h2>
-                  <button className="text-[14px] text-[#0095f6] font-[600]">
-                    Change profile photo
-                  </button>
+                  <input
+                    type="file"
+                    hidden
+                    onChange={addPhotoToPost}
+                    ref={filePickerRef}
+                  />
+                  {selectedFile ? (
+                    <button
+                      type="submit"
+                      className="flex items-center gap-2 text-[14px] bg-[#0095f6] font-[600] text-white py-1 px-3 rounded"
+                    >
+                      {upPicLoading && <Loader />}
+                      Upload
+                    </button>
+                  ) : (
+                    <button
+                      className="text-[14px] text-[#0095f6] font-[600]"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        filePickerRef.current.click();
+                      }}
+                    >
+                      Change profile photo
+                    </button>
+                  )}
                 </div>
-              </div>
-
+              </form>
+            </div>
+            <form
+              onSubmit={handleSubmit(updateProfileHandler)}
+              className="flex flex-col gap-6"
+            >
               <div className="flex flex-col lg:flex-row items-start lg:gap-10 gap-1">
                 <div className="lg:w-36 flex justify-end">
                   <label className="text-end text-[#262626] text-[16px] font-[600] dark:text-gray-300">
@@ -239,8 +311,9 @@ const Edit = () => {
                 <div className="flex w-[335px] gap-4">
                   <button
                     type="submit"
-                    className="bg-[#0095F6] text-[14px] text-white py-1 px-4 rounded"
+                    className="flex items-center gap-2 bg-[#0095F6] text-[14px] text-white py-1 px-4 rounded"
                   >
+                    {updaeProfileLoading && <Loader />}
                     Submit
                   </button>
                 </div>

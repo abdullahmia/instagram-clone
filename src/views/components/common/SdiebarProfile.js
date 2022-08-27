@@ -9,7 +9,10 @@ const SdiebarProfile = () => {
     <div className="flex items-center justify-between py-3">
       <div className="flex items-center gap-4">
         <div>
-          <Image src={image} classname="w-[56px] h-[56px] rounded-full" />
+          <Image
+            src={image}
+            classname="w-[56px] h-[56px] rounded-full object-cover"
+          />
         </div>
         <div>
           <Link

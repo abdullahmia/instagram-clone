@@ -29,7 +29,23 @@ export const userApi = createApi({
       },
       invalidatesTags: ["User"],
     }),
+
+    // update profile picture
+    updateProfilePicture: builder.mutation({
+      query: (body) => {
+        return {
+          url: `/user/upload-profile-picture`,
+          method: "PATCH",
+          body: body,
+        };
+      },
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
-export const { useUserDataQuery, useUpdateProfileMutation } = userApi;
+export const {
+  useUserDataQuery,
+  useUpdateProfileMutation,
+  useUpdateProfilePictureMutation,
+} = userApi;

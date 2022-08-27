@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import getUser from "../../../helper/user";
 import Switcher from "../custom/Switcher";
@@ -7,6 +7,13 @@ import Image from "./Image";
 const Header = () => {
   const user = getUser();
   let image = user?.image ? user?.image : "user_cowfsl";
+  const navigate = useNavigate();
+
+  // logout function
+  const logout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
   return (
     <div className="w-full bg-white dark:bg-[#121212] border-b py-4 border-[#dddddde0] dark:border-gray-800 px-4 lg:px-0 md:px-0 sticky top-0">
       <div className="container mx-auto">
@@ -151,9 +158,13 @@ const Header = () => {
             </Link>
             <button>
               {/* <img src="https://picsum.photos/200" className="" alt="user" /> */}
-              <Image src={image} classname="w-[24px] h-[24px] rounded-full" />
+              <Image
+                src={user?.image}
+                classname="w-[24px] h-[24px] rounded-full object-cover"
+              />
             </button>
             <Switcher />
+            <button onClick={logout}>Logout</button>
           </div>
         </div>
       </div>

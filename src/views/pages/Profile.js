@@ -11,6 +11,7 @@ import Wrapper from "../components/custom/Wrapper";
 const Profile = () => {
   const { username } = useParams();
   const { data: user, isLoading } = useUserDataQuery(username);
+
   return (
     <Wrapper title={"Abir Islam (@abirislam)"}>
       <Header />
@@ -24,7 +25,7 @@ const Profile = () => {
             <div>
               <Image
                 src={user?.image ? user?.image : "user_cowfsl"}
-                classname="lg:w-[150px] lg:h-[150px] w-[77px] h-[77px] rounded-full object-contain"
+                classname="lg:w-[150px] lg:h-[150px] w-[77px] h-[77px] rounded-full object-cover"
               />
             </div>
             <div className="flex flex-col gap-4">
