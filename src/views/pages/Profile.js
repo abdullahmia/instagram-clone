@@ -11,7 +11,6 @@ import Wrapper from "../components/custom/Wrapper";
 const Profile = () => {
   const { username } = useParams();
   const { data: user, isLoading } = useUserDataQuery(username);
-  console.log(user);
   return (
     <Wrapper title={"Abir Islam (@abirislam)"}>
       <Header />

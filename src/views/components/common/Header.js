@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import getUser from "../../../helper/user";
 import Switcher from "../custom/Switcher";
 import Image from "./Image";
+import AddPost from "./modals/addPost/AddPost";
 
 const Header = () => {
+  const [showModal, setShowModal] = useState(false);
   const user = getUser();
   let image = user?.image ? user?.image : "user_cowfsl";
   const navigate = useNavigate();
@@ -14,6 +17,7 @@ const Header = () => {
     localStorage.removeItem("user");
     navigate("/login");
   };
+
   return (
     <div className="w-full bg-white dark:bg-[#121212] border-b py-4 border-[#dddddde0] dark:border-gray-800 px-4 lg:px-0 md:px-0 sticky top-0">
       <div className="container mx-auto">
@@ -68,7 +72,7 @@ const Header = () => {
                 ></path>
               </svg>
             </Link>
-            <Link to="/add">
+            <button onClick={() => setShowModal(!showModal)}>
               <svg
                 aria-label="New post"
                 className="dark:text-gray-200"
@@ -110,7 +114,9 @@ const Header = () => {
                   y2="17.455"
                 ></line>
               </svg>
-            </Link>
+            </button>
+            {showModal && <AddPost setShowModal={setShowModal} />}
+
             <Link to="/search">
               <svg
                 aria-label="Find People"

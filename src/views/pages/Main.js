@@ -1,3 +1,4 @@
+import "react-responsive-modal/styles.css";
 import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "../../routes/PrivateRoute";
 import { routes } from "../../routes/routes";
