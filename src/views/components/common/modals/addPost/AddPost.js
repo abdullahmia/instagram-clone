@@ -31,7 +31,7 @@ const AddPost = ({ setShowModal, showModal }) => {
             />
           ) : (
             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-              <div className="background w-[800px] h-[700px] flex justify-center items-center">
+              <div className="background w-[800px] h-[600px] flex justify-center items-center">
                 <div className="flex flex-col gap-3 justify-center items-center">
                   <svg
                     aria-label="Icon to represent media such as images or videos"

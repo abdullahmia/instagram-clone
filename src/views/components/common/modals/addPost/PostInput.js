@@ -29,7 +29,7 @@ const PostInput = ({ selectedFile, setShowModal }) => {
   return (
     <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
       <form onSubmit={addNewPost}>
-        <div className="background w-[800px] py-2 px-4 flex justify-between border-b dark:border-[#2d343b]">
+        <div className="background w-[800px] h-full py-2 px-4 flex justify-between border-b dark:border-[#2d343b]">
           <button onClick={() => setShowModal(false)}>
             <FiX className="text-xl dark:text-gray-400" />
           </button>
@@ -41,7 +41,7 @@ const PostInput = ({ selectedFile, setShowModal }) => {
             Share
           </button>
         </div>
-        <div className="background w-[800px] h-[700px] flex">
+        <div className="background w-[800px] h-[600px] flex">
           <div className="w-3/5 h-full">
             <img
               src={selectedFile}
@@ -64,7 +64,7 @@ const PostInput = ({ selectedFile, setShowModal }) => {
                 value={caption}
                 onChange={(e) => setCaption(e.target.value)}
                 rows="2"
-                className="w-full bg-transparent text-[16px] font-[400] outline-none text-[#262626] placeholder-gray-500 tracking-wide min-h-[70px]"
+                className="w-full bg-transparent text-[16px] font-[400] outline-none text-[#262626] placeholder-gray-500 tracking-wide min-h-[70px]dark:text-gray-200"
                 placeholder="Write a caption......"
               />
             </div>
@@ -94,7 +94,7 @@ const PostInput = ({ selectedFile, setShowModal }) => {
               <input
                 type="text"
                 placeholder="Add Location"
-                className="text-[14px] text-[#262626] font-[400] focus:outline-none py-3 dark:bg-transparent"
+                className="text-[14px] text-[#262626] font-[400] focus:outline-none py-3 dark:bg-transparent dark:text-gray-400"
               />
               <svg
                 aria-label="Add location"
@@ -115,7 +115,7 @@ const PostInput = ({ selectedFile, setShowModal }) => {
               </h2>
               <svg
                 aria-label="Down chevron icon"
-                className="rotate-180"
+                className="rotate-180 dark:text-gray-400"
                 color="#262626"
                 fill="#262626"
                 height="16"
@@ -132,7 +132,7 @@ const PostInput = ({ selectedFile, setShowModal }) => {
               </h2>
               <svg
                 aria-label="Down chevron icon"
-                className="rotate-180"
+                className="rotate-180 dark:text-gray-400"
                 color="#262626"
                 fill="#262626"
                 height="16"

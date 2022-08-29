@@ -14,7 +14,7 @@ const Switcher = () => {
   };
   return (
     <div className="flex flex-col items-center">
-      <DarkModeSwitch checked={darkTheme} onChange={toggoleTheme} size={27} />
+      <DarkModeSwitch checked={darkTheme} onChange={toggoleTheme} size={19} />
     </div>
   );
 };
