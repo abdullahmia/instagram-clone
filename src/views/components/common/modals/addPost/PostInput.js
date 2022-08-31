@@ -6,7 +6,7 @@ import { FiX } from "react-icons/fi";
 import getUser from "../../../../../helper/user";
 import Image from "../../Image";
 
-const PostInput = ({ selectedFile, setShowModal }) => {
+const PostInput = ({ selectedFile, setShowModal, image }) => {
   const [caption, setCaption] = useState("");
   const [showEmojis, setShowEmojis] = useState(false);
   const user = getUser();
@@ -26,6 +26,8 @@ const PostInput = ({ selectedFile, setShowModal }) => {
     console.log("post has been added");
   };
 
+  console.log(image);
+
   return (
     <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
       <form onSubmit={addNewPost}>
@@ -44,7 +46,7 @@ const PostInput = ({ selectedFile, setShowModal }) => {
         <div className="background w-[800px] h-[600px] flex">
           <div className="w-3/5 h-full">
             <img
-              src={selectedFile}
+              src={URL.createObjectURL(image)}
               className="w-full h-full object-cover"
               alt="profile"
             />

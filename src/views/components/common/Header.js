@@ -10,7 +10,7 @@ const Header = () => {
   const [showModal, setShowModal] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
   const user = getUser();
-  let image = user?.image ? user?.image : "user_cowfsl";
+  // let image = user?.image ? user?.image : "user_cowfsl";
   const navigate = useNavigate();
 
   // logout function
@@ -73,6 +73,7 @@ const Header = () => {
                 ></path>
               </svg>
             </Link>
+
             <button onClick={() => setShowModal(!showModal)}>
               <svg
                 aria-label="New post"
@@ -116,7 +117,11 @@ const Header = () => {
                 ></line>
               </svg>
             </button>
-            {showModal && <AddPost setShowModal={setShowModal} />}
+            {showModal && (
+              <div className="overflow-hidden">
+                <AddPost setShowModal={setShowModal} />
+              </div>
+            )}
 
             <Link to="/search">
               <svg
@@ -167,7 +172,6 @@ const Header = () => {
 
             <div>
               <button onClick={() => setOpenSettings(!openSettings)}>
-                {/* <img src="https://picsum.photos/200" className="" alt="user" /> */}
                 <Image
                   src={user?.image}
                   classname="w-[24px] h-[24px] rounded-full object-cover"

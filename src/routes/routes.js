@@ -7,6 +7,7 @@ import Signup from "../views/pages/auth/Signup";
 // authenticated routes
 import Feed from "../views/pages/feed/Feed";
 import Post from "../views/pages/feed/Post";
+import AddPost from "../views/pages/post/AddPost";
 import Profile from "../views/pages/Profile";
 
 // Acounts routes
@@ -22,6 +23,11 @@ export const routes = [
   {
     path: "/p/:id",
     element: Post,
+    role: ["user"],
+  },
+  {
+    path: "/add-post",
+    element: AddPost,
     role: ["user"],
   },
   {

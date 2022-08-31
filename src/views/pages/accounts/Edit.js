@@ -20,6 +20,8 @@ const Edit = () => {
   const { username, image } = getUser();
   const { data: user, isLoading } = useUserDataQuery(username);
 
+  console.log(message);
+
   // update profile
   const [updateProfile, { isLoading: updaeProfileLoading }] =
     useUpdateProfileMutation();
