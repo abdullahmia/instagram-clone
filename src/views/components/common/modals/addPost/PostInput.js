@@ -1,13 +1,17 @@
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { BsEmojiSmile } from "react-icons/bs";
 import { FiX } from "react-icons/fi";
 import getUser from "../../../../../helper/user";
+import { useAddPostMutation } from "../../../../../redux/services/postService";
 import Image from "../../Image";
+import Loader from "../../Loader";
 
-const PostInput = ({ setShowModal, image }) => {
+const PostInput = ({ setShowModal, image, setImage }) => {
   const [caption, setCaption] = useState("");
+  const [location, setLocation] = useState("");
   const [showEmojis, setShowEmojis] = useState(false);
   const user = getUser();
 
@@ -20,13 +24,29 @@ const PostInput = ({ setShowModal, image }) => {
     setCaption(caption + emoji);
   };
 
+  const [addPost, { isLoading }] = useAddPostMutation();
+
   // new post
   const addNewPost = async (e) => {
     e.preventDefault();
-    console.log("post has been added");
-  };
 
-  console.log(image);
+    if (image) {
+      const formData = new FormData();
+      formData.append("caption", caption);
+      formData.append("image", image);
+      formData.append("location", location);
+
+      await addPost(formData).then((res) => {
+        if (res?.data) {
+          setCaption("");
+          setLocation("");
+          setImage(null);
+          setShowModal(false);
+          toast(res?.data?.message);
+        }
+      });
+    }
+  };
 
   return (
     <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -40,7 +60,7 @@ const PostInput = ({ setShowModal, image }) => {
             type="submit"
             className="text-[#0095f6] text-[14px] font-[600] focus:outline-none"
           >
-            Share
+            {isLoading ? <Loader /> : "Share"}
           </button>
         </div>
         <div className="background w-[800px] h-[600px] flex">
@@ -61,12 +81,12 @@ const PostInput = ({ setShowModal, image }) => {
                 {user?.username}
               </h2>
             </div>
-            <div className="px-5 pt-0 pb-0">
+            <div className="px-5 pt-0 pb-0 dark:text-white">
               <textarea
                 value={caption}
                 onChange={(e) => setCaption(e.target.value)}
                 rows="2"
-                className="w-full bg-transparent text-[16px] font-[400] outline-none text-[#262626] placeholder-gray-500 tracking-wide min-h-[70px]dark:text-gray-200"
+                className="w-full bg-transparent text-[16px] font-[400] outline-none text-[#262626] placeholder-gray-500 tracking-wide min-h-[70px]dark:text-white"
                 placeholder="Write a caption......"
               />
             </div>
@@ -96,6 +116,8 @@ const PostInput = ({ setShowModal, image }) => {
               <input
                 type="text"
                 placeholder="Add Location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
                 className="text-[14px] text-[#262626] font-[400] focus:outline-none py-3 dark:bg-transparent dark:text-gray-400"
               />
               <svg

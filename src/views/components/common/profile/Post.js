@@ -1,18 +1,22 @@
 import { FiHeart, FiMessageCircle } from "react-icons/fi";
+import Image from "../Image";
 
-const Post = () => {
+const Post = ({ post }) => {
+  console.log(post);
   return (
     <div className="group relative">
-      <img
-        src="https://picsum.photos/200"
-        alt="post"
-        className="w-full h-full object-cover"
-      />
+      <Image src={post?.image} classname="w-full h-64 object-cover" />
       <div className="absolute top-0 w-full h-full bg-[#00000052] opacity-0 fd-sh group-hover:opacity-100">
         <div className="flex items-center justify-center h-full">
-          <div className="flex text-2xl gap-7 text-white">
-            <FiHeart />
-            <FiMessageCircle />
+          <div className="flex items-center text-2xl gap-7 text-white">
+            <span className="flex items-center gap-2 font-normal">
+              {post?.likes?.length}
+              <FiHeart />
+            </span>
+            <span className="flex items-center gap-2 font-normal">
+              {post?.comments?.length}
+              <FiMessageCircle />
+            </span>
           </div>
         </div>
       </div>

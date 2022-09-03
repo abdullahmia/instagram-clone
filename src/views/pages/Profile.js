@@ -10,7 +10,9 @@ import Wrapper from "../components/custom/Wrapper";
 
 const Profile = () => {
   const { username } = useParams();
-  const { data: user, isLoading } = useUserDataQuery(username);
+  const { data, isLoading } = useUserDataQuery(username);
+  let user = data?.user;
+  let posts = data?.posts;
   return (
     <Wrapper title={"Abir Islam (@abirislam)"}>
       <Header />
@@ -78,13 +80,13 @@ const Profile = () => {
                   </h3>
                   <h3 className="text-[#262626] dark:text-gray-400 text-[16px] font-[400]">
                     <span className="font-semibold">
-                      {user?.followers.length}
+                      {user?.followers?.length}
                     </span>{" "}
                     followers
                   </h3>
                   <h3 className="text-[#262626] dark:text-gray-400 text-[16px] font-[400]">
                     <span className="font-semibold">
-                      {user?.following.length}
+                      {user?.following?.length}
                     </span>{" "}
                     following
                   </h3>
@@ -261,7 +263,7 @@ const Profile = () => {
             </div>
           </div>
           {/* posts */}
-          <Posts />
+          <Posts posts={posts} />
 
           {/* Footer menu */}
           <Footer />
