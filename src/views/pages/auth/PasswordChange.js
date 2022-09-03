@@ -1,12 +1,10 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { usePasswordChangeMutation } from "../../../redux/services/authServices";
 import Loader from "../../components/common/Loader";
 import AccountWrapper from "../../components/custom/AccountWrapper";
 
 const PasswordChange = () => {
-  const [message, setMessage] = useState("");
-  const [success, setSuccess] = useState("");
   const { register, handleSubmit, reset } = useForm();
 
   const [passwordChange, { isLoading }] = usePasswordChangeMutation();
@@ -14,17 +12,28 @@ const PasswordChange = () => {
   const passwordChangeHandler = async (data) => {
     console.log(data);
     if (data.newPassword !== data.confirmPassword) {
-      setMessage("Password not matched");
+      toast.custom((t) => (
+        <div className="dark:bg-gray-700 bg-white dark:text-gray-300 mb-4 p-4 rounded-md shadow-md flex flex-col gap-9">
+          <h2>Password didn't match</h2>
+        </div>
+      ));
     } else {
       await passwordChange(data).then((res) => {
         if (res.data) {
           // console.log(res?.data?.message);
-          setSuccess(res?.data?.message);
+          toast.custom((t) => (
+            <div className="dark:bg-gray-700 bg-white dark:text-gray-300 mb-4 p-4 rounded-md shadow-md flex flex-col gap-9">
+              <h2>{res?.data?.message}</h2>
+            </div>
+          ));
           reset();
         }
         if (res?.error) {
-          setSuccess("");
-          setMessage(res.error.data.message);
+          toast.custom((t) => (
+            <div className="dark:bg-gray-700 bg-white dark:text-gray-300 mb-4 p-4 rounded-md shadow-md flex flex-col gap-9">
+              <h2>{res.error.data.message}</h2>
+            </div>
+          ));
         }
       });
     }
@@ -48,18 +57,6 @@ const PasswordChange = () => {
               </h2>
             </div>
           </div>
-
-          {message && (
-            <p className="text-[17px] mb-5 text-[#b63131] px-2 text-center">
-              {message}
-            </p>
-          )}
-
-          {success && (
-            <p className="text-[17px] mb-5 px-2 text-center dark:text-gray-500">
-              {success}
-            </p>
-          )}
 
           <form
             onSubmit={handleSubmit(passwordChangeHandler)}

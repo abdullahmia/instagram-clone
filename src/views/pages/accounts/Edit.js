@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import getUser from "../../../helper/user";
 // prettier-ignore
 import {
@@ -12,16 +13,12 @@ import Loader from "../../components/common/Loader";
 import AccountWrapper from "../../components/custom/AccountWrapper";
 
 const Edit = () => {
-  const [message, setMessage] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [profile, setProfile] = useState(null);
   const filePickerRef = useRef(null);
   const { register, handleSubmit } = useForm();
   const { username, image } = getUser();
   const { data: user, isLoading } = useUserDataQuery(username);
-
-  console.log(message);
-
   // update profile
   const [updateProfile, { isLoading: updaeProfileLoading }] =
     useUpdateProfileMutation();
@@ -34,9 +31,14 @@ const Edit = () => {
         localStorage.removeItem("user");
         localStorage.setItem(
           "user",
-          JSON.stringify({ token: user.token, ...res?.data?.user })
+          JSON.stringify({ token: user.token, ...user })
         );
-        setMessage(res?.data?.message);
+        toast.custom((t) => (
+          <div className="dark:bg-gray-700 bg-white dark:text-gray-300 mb-4 p-4 rounded-md shadow-md flex flex-col gap-9">
+            <h2>{res?.data?.message}</h2>
+          </div>
+        ));
+        // toast(res?.data?.message);
       }
     });
   };
@@ -70,7 +72,11 @@ const Edit = () => {
           "user",
           JSON.stringify({ ...oldUser, image: res?.data?.image })
         );
-        setMessage(res?.data?.message);
+        toast.custom((t) => (
+          <div className="dark:bg-gray-700 bg-white dark:text-gray-300 mb-4 p-4 rounded-md shadow-md flex flex-col gap-9">
+            <h2>{res?.data?.message}</h2>
+          </div>
+        ));
         setProfile(null);
       }
     });

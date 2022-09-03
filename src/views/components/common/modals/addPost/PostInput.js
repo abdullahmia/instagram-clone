@@ -6,7 +6,7 @@ import { FiX } from "react-icons/fi";
 import getUser from "../../../../../helper/user";
 import Image from "../../Image";
 
-const PostInput = ({ selectedFile, setShowModal, image }) => {
+const PostInput = ({ setShowModal, image }) => {
   const [caption, setCaption] = useState("");
   const [showEmojis, setShowEmojis] = useState(false);
   const user = getUser();

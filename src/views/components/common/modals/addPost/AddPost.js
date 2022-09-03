@@ -3,7 +3,6 @@ import { FiX } from "react-icons/fi";
 import PostInput from "./PostInput";
 
 const AddPost = ({ setShowModal, showModal }) => {
-  const [selectedFile, setSelectedFile] = useState(null);
   const [image, setImage] = useState(null);
   const filePickerRef = useRef(null);
 
@@ -20,11 +19,7 @@ const AddPost = ({ setShowModal, showModal }) => {
         <div className="relative w-auto my-6 mx-auto max-w-3xl">
           {/*content*/}
           {image ? (
-            <PostInput
-              selectedFile={selectedFile}
-              setShowModal={setShowModal}
-              image={image}
-            />
+            <PostInput setShowModal={setShowModal} image={image} />
           ) : (
             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
               <div className="background w-[700px] h-[500px]">
