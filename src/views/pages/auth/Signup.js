@@ -70,24 +70,28 @@ const Signup = () => {
                     type="text"
                     className="border text-xs py-2.5 bg-gray-50 px-3 rounded focus:outline-none background dark:text-gray-300 dark:border-[#2d343b]"
                     placeholder="Email address"
+                    required
                   />
                   <input
                     {...register("fullName")}
                     type="text"
                     className="border text-xs py-2.5 bg-gray-50 px-3 rounded focus:outline-none background dark:text-gray-300 dark:border-[#2d343b]"
                     placeholder="Full Name"
+                    required
                   />
                   <input
                     {...register("username")}
                     type="text"
                     className="border text-xs py-2.5 bg-gray-50 px-3 rounded focus:outline-none background dark:text-gray-300 dark:border-[#2d343b]"
                     placeholder="Username"
+                    required
                   />
                   <input
                     {...register("password")}
                     type="password"
                     className="border text-xs py-2.5 px-3 rounded focus:outline-none background dark:text-gray-300 dark:border-[#2d343b]"
                     placeholder="Password"
+                    required
                   />
                   <p className="text-[12px] text-[#8e8e8e] px-2 text-center">
                     People who use our service may have uploaded your contact

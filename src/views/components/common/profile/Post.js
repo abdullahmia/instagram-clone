@@ -2,7 +2,6 @@ import { FiHeart, FiMessageCircle } from "react-icons/fi";
 import Image from "../Image";
 
 const Post = ({ post }) => {
-  console.log(post);
   return (
     <div className="group relative">
       <Image src={post?.image} classname="w-full h-64 object-cover" />

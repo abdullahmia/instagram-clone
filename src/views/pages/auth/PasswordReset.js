@@ -68,6 +68,7 @@ const PasswordReset = () => {
                 type="text"
                 className="border text-xs py-2.5 bg-gray-50 px-3 rounded-md focus:outline-none"
                 placeholder="Email address"
+                required
               />
 
               <button

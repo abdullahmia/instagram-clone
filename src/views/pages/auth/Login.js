@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import appleStore from "../../../assets/appstore.png";
 import facebook from "../../../assets/facebook.png";
 import playStore from "../../../assets/googleplay.png";
-import loginImg from "../../../assets/insta.jpg";
+import loginImg from "../../../assets/insta.png";
 import logo from "../../../assets/logo.png";
 import { useLoginMutation } from "../../../redux/services/authServices";
 import Loader from "../../components/common/Loader";
@@ -66,12 +66,14 @@ const Login = () => {
                     type="text"
                     className="border text-xs py-2.5 bg-gray-50 px-3 rounded focus:outline-none background dark:text-gray-300 dark:border-[#2d343b]"
                     placeholder="Phone number, email or username"
+                    required
                   />
                   <input
                     {...register("password")}
                     type="password"
                     className="border text-xs py-2.5 px-3 rounded focus:outline-none background dark:text-gray-300 dark:border-[#2d343b]"
                     placeholder="Password"
+                    required
                   />
                   <button
                     type="submit"

@@ -10,7 +10,6 @@ const PasswordChange = () => {
   const [passwordChange, { isLoading }] = usePasswordChangeMutation();
   // password change handler
   const passwordChangeHandler = async (data) => {
-    console.log(data);
     if (data.newPassword !== data.confirmPassword) {
       toast.custom((t) => (
         <div className="dark:bg-gray-700 bg-white dark:text-gray-300 mb-4 p-4 rounded-md shadow-md flex flex-col gap-9">

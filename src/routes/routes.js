@@ -7,7 +7,7 @@ import Signup from "../views/pages/auth/Signup";
 // authenticated routes
 import Feed from "../views/pages/feed/Feed";
 import Post from "../views/pages/feed/Post";
-import Profile from "../views/pages/Profile";
+import Profile from "../views/pages/profile/Profile";
 
 // Acounts routes
 import Edit from "../views/pages/accounts/Edit";

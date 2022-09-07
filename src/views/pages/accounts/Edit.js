@@ -18,7 +18,9 @@ const Edit = () => {
   const filePickerRef = useRef(null);
   const { register, handleSubmit } = useForm();
   const { username, image } = getUser();
-  const { data: user, isLoading } = useUserDataQuery(username);
+  const { data, isLoading } = useUserDataQuery(username);
+
+  let user = data?.user;
   // update profile
   const [updateProfile, { isLoading: updaeProfileLoading }] =
     useUpdateProfileMutation();

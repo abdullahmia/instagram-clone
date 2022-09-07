@@ -15,19 +15,13 @@ const SuggestedProfile = ({ user }) => {
   // follow user
   const [follow] = useFollowMutation();
   const followHandler = async () => {
-    console.log(user._id);
-    await follow(user?._id).then((res) => {
-      console.log(res);
-    });
+    await follow(user?._id).then((res) => {});
   };
 
   // unfollow a user
   const [unfollow] = useUnfollowMutation();
   const unfollowHandler = async () => {
-    console.log(user._id);
-    await unfollow(user?._id).then((res) => {
-      console.log(res.data);
-    });
+    await unfollow(user?._id).then((res) => {});
   };
 
   return (
@@ -43,7 +37,7 @@ const SuggestedProfile = ({ user }) => {
         </div>
         <div>
           <Link
-            to={"/abirislam"}
+            to={`/${user?.username}`}
             className="text-[14px] text-[#262626] dark:text-gray-400 font-[700]"
           >
             {user?.username}

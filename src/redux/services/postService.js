@@ -11,7 +11,7 @@ export const postApi = createApi({
       return header;
     },
   }),
-
+  tagTypes: ["posts"],
   endpoints: (builder) => ({
     // new post
     addPost: builder.mutation({
@@ -22,8 +22,42 @@ export const postApi = createApi({
           body,
         };
       },
+      invalidatesTags: ["posts"],
+    }),
+
+    // get posts
+    getPosts: builder.query({
+      query: () => "/post",
+      providesTags: ["posts"],
+    }),
+
+    // like a post
+    likePost: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/post/like/${id}`,
+          method: "PATCH",
+        };
+      },
+      invalidatesTags: ["posts"],
+    }),
+
+    // unlike a post
+    unlikePost: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/post/unlike/${id}`,
+          method: "PATCH",
+        };
+      },
+      invalidatesTags: ["posts"],
     }),
   }),
 });
 
-export const { useAddPostMutation } = postApi;
+export const {
+  useAddPostMutation,
+  useGetPostsQuery,
+  useLikePostMutation,
+  useUnlikePostMutation,
+} = postApi;
